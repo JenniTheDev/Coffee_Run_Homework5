@@ -1,3 +1,5 @@
+// coffeerun-2bf64
+
 (function (window) {
     'use strict';
     var App = window.App || {};
@@ -11,11 +13,23 @@
         this.serverUrl = url;
     }
 
-    RemoteDataStore.prototype.add = function (key, val) {
-        $.post(this.serverUrl, val, function (serverResponse) {
-            console.log(serverResponse);
+  //  RemoteDataStore.prototype.add = function (key, val) {
+  //      $.post(this.serverUrl, val, function (serverResponse) {
+  //          console.log(serverResponse);
+  //      });
+ //  };
+
+   //  Testing this with firebase
+    RemoteDataStore.prototype.add = function (key, val){
+        firebase.database().ref(val).set({
+            
+            
         });
     };
+
+  
+
+
 
     RemoteDataStore.prototype.getAll = function (cb) {
         $.get(this.serverUrl, function (serverResponse) {

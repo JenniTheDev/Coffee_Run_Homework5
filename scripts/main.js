@@ -3,7 +3,12 @@
     // For Richard's remote server
     // var SERVER_URL = 'https://co.audstanley.com/coffeeorders';
     // For my local server
-    var SERVER_URL = 'http://localhost:3000/coffeeorders';
+    // var SERVER_URL = 'http://localhost:3000/coffeeorders';
+    // For Firebase server
+    var SERVER_URL = "https://coffeerun-2bf64.firebaseio.com";
+    // I don't think this database variable goes here
+    // var database = firebase.database();
+
     var App = window.App;
     var FormHandler = App.FormHandler;
     var Truck = App.Truck;
@@ -34,4 +39,9 @@
 
 
     console.log(formHandler);
+
+ 
+
+
+
 })(window);

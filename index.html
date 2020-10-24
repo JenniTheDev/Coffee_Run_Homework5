@@ -13,6 +13,7 @@
     </style>
 
 
+
 </head>
 
 <body class="container">
@@ -98,13 +99,31 @@
     <script src="scripts/truck.js" charset="utf-8"></script>
     <script src="scripts/main.js" charset="utf-8"></script>
 
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/init.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBHBdy1nltj2PGMw8M3FMoIrk746tv_tvQ",
+            authDomain: "coffeerun-2bf64.firebaseapp.com",
+            databaseURL: "https://coffeerun-2bf64.firebaseio.com",
+            projectId: "coffeerun-2bf64",
+            storageBucket: "coffeerun-2bf64.appspot.com",
+            messagingSenderId: "935855977148",
+            appId: "1:935855977148:web:cfa99cf48094625e5996b9",
+            measurementId: "G-WTBGRC407M"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
 
 </body>

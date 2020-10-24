@@ -5,9 +5,6 @@
     var App = window.App || {};
     var $ = window.jQuery;
 
-   // var db = firebase.firestore();
-
-
     function RemoteDataStore(url) {
         if (!url) {
             throw new Error('No remote URL supplied.');

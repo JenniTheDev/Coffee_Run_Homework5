@@ -5,7 +5,7 @@
     // For my local server
     // var SERVER_URL = 'http://localhost:3000/coffeeorders';
     // For Firebase server
-    var SERVER_URL = "https://coffeerun-2bf64.firebaseio.com";
+    var SERVER_URL = "https://coffeerun-2bf64.firebaseapp.com";
     // I don't think this database variable goes here
     // var database = firebase.database();
 

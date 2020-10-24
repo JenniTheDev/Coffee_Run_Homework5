@@ -40,8 +40,5 @@
 
     console.log(formHandler);
 
- 
-
-
-
+    
 })(window);

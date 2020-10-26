@@ -1,44 +1,41 @@
 (function (window) {
     'use strict';
-    // For Richard's remote server
-    // var SERVER_URL = 'https://co.audstanley.com/coffeeorders';
-    // For my local server
-    // var SERVER_URL = 'http://localhost:3000/coffeeorders';
-    // For Firebase server
-    var SERVER_URL = "https://coffeerun-2bf64.firebaseapp.com";
-    // I don't think this database variable goes here
-    // var database = firebase.database();
-
-    var App = window.App;
-    var FormHandler = App.FormHandler;
-    var Truck = App.Truck;
-    var DataStore = App.DataStore;
-    var CheckList = App.CheckList;
-    var Validation = App.Validation;
-    var RemoteDataStore = App.RemoteDataStore;
-    var remoteDS = new RemoteDataStore(SERVER_URL);
-
-    window.myTruck = myTruck;
-    var CheckList = App.CheckList;
-    var myTruck = new Truck('KITT', remoteDS);
     var FORM_SELECTOR = '[data-coffee-order="form"]';
-    var formHandler = new FormHandler(FORM_SELECTOR);
-    var CHECKLIST_SELECTOR = '[data-coffee-order="checklist"]';
-   
-
+    var CHECKLIST_SELECTOR = '[data-coffee-order="checklist"]';     // CHOOSE ONLY ONE...
+    // var SERVER_URL = 'https://co.audstanley.com/coffeeorders';    // if running on the shared server
+    // var SERVER_URL = 'http://localhost:3000/coffeeorders';          // if running locally
+​
+    var App = window.App;
+    var Truck = App.Truck;
+    //var DataStore = new App.DataStore;
+    //var RemoteDataStore = App.RemoteDataStore;
+    var FireBaseDataStore = App.FireBaseDataStore;
+    var FormHandler = App.FormHandler;
+    var Validation = App.Validation;
+    var CheckList = App.CheckList;
+    // var remoteDS = new RemoteDataStore(SERVER_URL);
+​
+    // do NOT create an anonymous FireBaseDataStore() -- google will not allow it
+    //    make a variable named remoteFireBase, and use that to create the new Truck
+    var remoteFireBase = new FireBaseDataStore();
+​
+    // var truck = new Truck('ncc-1701', new DataStore());
+    // var truck = new Truck('ncc-1701', remoteFireBase);
+    var truck = new Truck('ncc-1701', remoteFireBase);
+    window.truck = truck;
     var checkList = new CheckList(CHECKLIST_SELECTOR);
-    checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck));
-
-
-    formHandler.addSubmitHandler(function (data) {
-        myTruck.createOrder.call(myTruck, data);
-        checkList.addRow.call(checkList, data);
+    checkList.addClickHandler(truck.deliverOrder.bind(truck));
+    var formHandler = new FormHandler(FORM_SELECTOR);
+​
+    formHandler.addSubmitHandler(function(data) {
+        return truck.createOrder.call(truck, data)
+            .then(() => {
+                checkList.addRow.call(checkList, data);
+            }); 
     });
-
-    formHandler.addInputHandler(Validation.isCompanyEmail);
-
-
     console.log(formHandler);
-
-    
+​
+    formHandler.addInputHandler(Validation.isCompanyEmail);
+    truck.printOrders(checkList.addRow.bind(checkList));
+​
 })(window);
